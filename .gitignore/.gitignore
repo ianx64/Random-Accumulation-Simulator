@@ -76,6 +76,6 @@ ModelManifest.xml
 #Backup file  
 *.bak
 
-#from zzzili
+#from zzzili, https://blog.csdn.net/zzzili/article/details/78262755, CC 4.0 BY-SA license
 v15/
 .gitignore
