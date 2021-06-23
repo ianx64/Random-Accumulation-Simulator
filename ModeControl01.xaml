@@ -1,0 +1,233 @@
+﻿<UserControl x:Class="Random_Accumulation_Simulator.ModeControl01"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Random_Accumulation_Simulator"
+             mc:Ignorable="d" 
+             d:MinHeight="100" d:DesignWidth="750"  >
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!--Fixed input area, and labels-->
+            <RowDefinition Height="Auto"/>
+            <!--Flexible input area-->
+            <RowDefinition Height="Auto"/>
+            <!--Output area-->
+            <RowDefinition Height="Auto"/>
+            <!--Reporting error and buttons -->
+        </Grid.RowDefinitions>
+
+
+
+
+        <!--Fixed input area, and labels-->
+        <StackPanel Grid.Row="0" Height="Auto" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,0">
+                    <Label Margin="20,0,0,0" FontSize="16" FontWeight="Black" Foreground="#FFCBCACD">输入</Label>
+
+                </StackPanel>
+
+
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+
+
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+
+                        <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">累加次数</Label>
+                        <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="20" Width="80"  x:Name="sAccumulation"></TextBox>
+                        <Label Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">[累加值下界</Label>
+                        <TextBox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Height="20" Width="80"  x:Name="sRangeMin"></TextBox>
+
+                        <Label Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">累加值上界]</Label>
+                        <TextBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Height="20" Width="80"  x:Name="sRangeMax"></TextBox>
+                        <Label Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">模拟次数</Label>
+                        <TextBox Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" Height="20" Width="80"  x:Name="sRepeat"></TextBox>
+
+
+
+                        <Button Grid.Column="5" Grid.Row="0" Background="#FF343231" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" Click="Remove_Click" FontFamily="Microsoft YaHei" Foreground="#FFCBCACD" BorderBrush="#FF7F7D7B" BorderThickness="2">删除随机事件</Button>
+
+                        <Button Grid.Column="5" Grid.Row="1"  Background="#FF343231" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal" Click="Add_Click" Foreground="#FFCBCACD" BorderBrush="#FF7F7D7B" BorderThickness="2">添加随机事件</Button>
+
+
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />                            
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">是否激活</Label>
+                        <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">是否离散</Label>
+                        <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">[随机数下界</Label>
+                        <Label Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">随机数上界]</Label>
+                        <Label Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">离散值邻间距</Label>
+                        <Label Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFCBCACD">事件概率权重</Label>
+                        
+
+                    </Grid>
+                </StackPanel>
+
+
+
+
+            </Grid>
+        </StackPanel>
+        <!--Fixed input area, and labels Ends here.-->
+
+        <!--Output area-->
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+
+
+
+
+
+
+            <StackPanel>
+                <Label Margin="20,0,0,0" FontSize="16" FontWeight="Black" Foreground="#FFCBCACD">累加值输出</Label>
+            </StackPanel>
+
+
+            <StackPanel >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label HorizontalAlignment="Center" Foreground="#FFCBCACD">平均值</Label>
+                        <TextBox HorizontalAlignment="Center" Height="20" Width="80" x:Name="sAverage"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label HorizontalAlignment="Center" Foreground="#FFCBCACD">最小值</Label>
+                        <TextBox HorizontalAlignment="Center" Height="20" Width="80"  x:Name="sMin"></TextBox>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label HorizontalAlignment="Center" Foreground="#FFCBCACD" >最大值</Label>
+                        <TextBox HorizontalAlignment="Center" Height="20" Width="80" x:Name="sMax"></TextBox>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label HorizontalAlignment="Center" Foreground="#FFCBCACD">低于下界概率</Label>
+                        <TextBox HorizontalAlignment="Center" Height="20" Width="80" x:Name="sProbabilityLower"></TextBox>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label HorizontalAlignment="Center" Foreground="#FFCBCACD">区间内概率</Label>
+                        <TextBox HorizontalAlignment="Center" Height="20" Width="80" x:Name="sProbabilityFit"></TextBox>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label HorizontalAlignment="Center" Foreground="#FFCBCACD">高于上界概率</Label>
+                        <TextBox HorizontalAlignment="Center" Height="20" Width="80" x:Name="sProbabilityHigher"></TextBox>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+
+
+
+        </StackPanel>
+        <!--Output area.Ends here.-->
+
+
+        <!--Reporting error and buttons -->
+        
+            <Grid  Grid.Row="3" Margin="10,10,20,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Margin="10,0,0,0" x:Name="sDebug" FontWeight="Bold" Foreground="#FFD4512D" MinWidth="100"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" >
+                    <Button FontWeight="Bold" Background="#FF343231" Click="Generate_Click" Height="35" Width="100" Foreground="#FFCBCACD" BorderBrush="#FF7F7D7B" BorderThickness="2" Content="开始模拟" />
+                    <Button FontWeight="Bold" Background="#FF343231" Click="Clean_Click" Height="35" Width="100" Margin="50,0,0,0" Foreground="#FFCBCACD" BorderBrush="#FF7F7D7B" BorderThickness="2" Content="清除模拟结果"/>
+                </StackPanel>
+            </Grid>
+        
+        <!--Reporting error and buttons.Ends Here. -->
+
+        <!--Flexible input area-->
+        <StackPanel Grid.Row="1"  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid x:Name="flexibleGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>                    
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <CheckBox Tag="0"  Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="isActive_0" Margin="10,10,10,10" IsChecked="True" Checked="isActive_n_Checked" Unchecked="isActive_n_Unchecked"/>
+
+                <CheckBox Tag="0" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="isDiscrete_0" IsChecked="False" Checked="isDiscrete_n_Checked" Unchecked="isDiscrete_n_Unchecked" />
+
+                <TextBox Tag="0" Grid.Column="2"  MinWidth="80" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="sValueMin_0" Text="{}" />
+
+                <TextBox Tag="0" Grid.Column="3" MinWidth="80" Height="20" HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="sValueMax_0" Text="{}" />
+
+                <TextBox Tag="0" Grid.Column="4" MinWidth="80" Height="20" HorizontalAlignment="Center"   VerticalAlignment="Center" x:Name="sDelta_0" Text="{}" Visibility="Hidden"/>
+
+                <TextBox Tag="0" Grid.Column="5" MinWidth="80" Height="20" HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="sWeight_0" Text="1" />
+                
+                
+
+                <Border Tag="0" BorderThickness="1" BorderBrush="#FF696661" Grid.ColumnSpan="6" Margin="0,0,0,0"/>
+
+            </Grid>
+
+        </StackPanel>
+        <!--Flexible input area. Ends here.-->
+
+
+
+
+    </Grid>
+</UserControl>
