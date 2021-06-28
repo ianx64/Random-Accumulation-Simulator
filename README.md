@@ -2,9 +2,9 @@
 
 
 An application simulates the accumulation of an independent and identically distributed random variable sequence (variable may contain one or multiple mutually exclusive). 
-Intends to support the design, evaluation and adjustment of random value/events in game balance design. 
+Intends to support the design, evaluation and adjustment of random value/events in game balance design(English version in progress). 
 
-User guide, design idea and app download (English version in progress):
+User guide, design idea and app download(CN Version):
 https://github.com/monosleepo/Random-Accumulation-Simulator/releases/tag/V1.0
 
 /
